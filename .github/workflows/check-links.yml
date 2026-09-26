@@ -1,0 +1,39 @@
+name: Check README links
+
+on:
+  pull_request:
+    paths:
+      - README.md
+  push:
+    branches:
+      - main
+    paths:
+      - README.md
+  schedule:
+    - cron: '23 5 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - name: Check links in README
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --no-progress
+            --max-concurrency 4
+            --max-retries 2
+            --timeout 30
+            --exclude-all-private
+            README.md
+          format: markdown
+          fail: true
+          failIfEmpty: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
