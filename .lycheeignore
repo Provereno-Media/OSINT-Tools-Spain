@@ -1,0 +1,7 @@
+# Bot-blocked, flaky or misconfigured-TLS sites; verified manually (see PR description)
+^https://crt\.sh/
+^https://sede\.interior\.gob\.es/
+^https://www\.congreso\.es/
+^https://www\.senado\.es/
+^https://catastro\.navarra\.es/
+^https://geoportal\.navarra\.es/
